@@ -19,6 +19,12 @@ public class User extends Auditable {
     private long userid;
 
     /**
+     * The username (String). Cannot be null and must be unique
+     */
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    /**
      * User first name (String)
      */
     private String firstname;
@@ -27,12 +33,6 @@ public class User extends Auditable {
      * User last name (String)
      */
     private String lastname;
-
-    /**
-     * The username (String). Cannot be null and must be unique
-     */
-    @Column(nullable = false, unique = true)
-    private String username;
 
     /**
      * Primary email account of user. Could be used as the userid. Cannot be null and must be unique.
@@ -67,16 +67,16 @@ public class User extends Auditable {
      * Given the parameters, create a new user object
      * <p>
      *
+     * @param username
      * @param firstname
      * @param lastname
-     * @param username
      * @param primaryemail
      * @param password
      */
-    public User(String firstname, String lastname, String username, String primaryemail, String password) {
+    public User(String username, String firstname, String lastname, String primaryemail, String password) {
+        this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.username = username;
         this.primaryemail = primaryemail;
         this.password = password;
     }
@@ -99,22 +99,6 @@ public class User extends Auditable {
         this.userid = userid;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     /**
      * Getter for username
      *
@@ -131,6 +115,42 @@ public class User extends Auditable {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * Getter for first name
+     *
+     * @return the first name
+     */
+    public String getFirstname() {
+        return firstname;
+    }
+
+    /**
+     * Setter for first name
+     *
+     * @param firstname
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    /**
+     * Getter for last name
+     *
+     * @return the last name
+     */
+    public String getLastname() {
+        return lastname;
+    }
+
+    /**
+     * Setter for last name
+     *
+     * @param lastname
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     /**
