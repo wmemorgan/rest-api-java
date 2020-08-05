@@ -21,7 +21,6 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApiApplication.class)
-@Transactional
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RoleServiceImplTest {
 
