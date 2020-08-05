@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implements the RoleService Interface
+ * Implements the RoleService interface
  */
 @Transactional
 @Service(value = "roleService")
