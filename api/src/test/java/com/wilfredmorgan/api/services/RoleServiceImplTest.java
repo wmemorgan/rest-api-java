@@ -26,9 +26,6 @@ import static org.junit.Assert.*;
 public class RoleServiceImplTest {
 
     @Autowired
-    RoleService userService;
-
-    @Autowired
     RoleService roleService;
 
     // Method to validate database manipulation
