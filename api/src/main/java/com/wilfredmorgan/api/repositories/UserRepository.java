@@ -16,7 +16,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * @param username
      * @return User object with the matching username
      */
-    User findByUsername(String username);
+    User findByUsernameIgnoreCase(String username);
 
     /**
      * Find a user by email address
@@ -24,7 +24,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * @param email
      * @return User object with the matching email address
      */
-    User findByPrimaryemail(String email);
+    User findByPrimaryemailIgnoreCase(String email);
 
     /**
      * Find all users whose username contains a given case insensitive substring
