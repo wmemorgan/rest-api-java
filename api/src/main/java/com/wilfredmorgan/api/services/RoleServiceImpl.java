@@ -90,10 +90,6 @@ public class RoleServiceImpl implements RoleService{
             throw new EntityNotFoundException("No role name found to update");
         }
 
-        if (role.getUsers().size() > 0) {
-            throw new EntityExistsException("User roles are not updated through Role object");
-        }
-
         Role r = findRoleById(id);
 
         roleRepository.updateRoleName(userAuditing
