@@ -27,31 +27,40 @@ public class RoleServiceImplTest {
     @Autowired
     RoleService roleService;
 
-    @Before
-    public void setUp() throws Exception {
-
-        MockitoAnnotations.initMocks(this);
-        System.out.println("\n*** BEFORE ***");
+    // Method to validate database manipulation
+    public List<Role> displayTestDbRecords() {
         List<Role> list = roleService.findAll();
 
         for (Role r : list) {
             System.out.println(r.getRoleid() + " " + r.getName());
         }
+
+        return list;
+    }
+
+    @Before
+    public void setUp() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+
+        // Uncomment when validating database manipulation
+//        System.out.println("\n*** BEFORE ***");
+//        displayTestDbRecords();
+
     }
 
     @After
     public void tearDown() throws Exception {
 
-        System.out.println("\n*** AFTER ***");
-        List<Role> list = roleService.findAll();
-
-        for (Role r : list) {
-            System.out.println(r.getRoleid() + " " + r.getName());
-        }
+        // Uncomment when validating database manipulation
+//        System.out.println("\n*** AFTER ***");
+//        displayTestDbRecords();
     }
 
     @Test
     public void findAll() {
+
+
     }
 
     @Test
