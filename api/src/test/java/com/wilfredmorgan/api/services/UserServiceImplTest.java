@@ -32,6 +32,7 @@ public class UserServiceImplTest {
     @Autowired
     RoleService roleService;
 
+    // Method to validate database manipulation
     public List<User> displayTestDbRecords() {
         List<User> list = userService.findAll();
 
