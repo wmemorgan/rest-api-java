@@ -61,5 +61,5 @@ public interface RoleService {
     /**
      * Deletes all records and their associated records from the database
      */
-    public void deleteAll();
+    void deleteAll();
 }
