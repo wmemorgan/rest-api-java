@@ -116,4 +116,87 @@ public class UserController {
         
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
+
+    /**
+     * Given a complete User Object, create a new User record and accompanying useremail records
+     * and user role records.
+     * <br> Example: <a href="http://localhost:2019/users/user">http://localhost:2019/users/user</a>
+     *
+     * @param newuser A complete new user to add including emails and roles.
+     *                roles must already exist.
+     * @return A location header with the URI to the newly created user and a status of CREATED
+     * @throws URISyntaxException Exception if something does not work in creating the location header
+     * @see UserService#save(User) UserService.save(User)
+     */
+    @PostMapping(value = "/user", consumes = {"application/json"})
+    public ResponseEntity<?> addNewUser(@Valid @RequestBody User newuser) throws URISyntaxException {
+        newuser.setUserid(0);
+        newuser = userService.save(newuser);
+
+        // set the location header for the newly created resource
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{userid}")
+                .buildAndExpand(newuser.getUserid())
+                .toUri();
+        responseHeaders.setLocation(newUserURI);
+
+        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+    }
+
+    /**
+     * Given a complete User Object
+     * Given the user id, primary key, is in the User table,
+     * replace the User record and Useremail records.
+     * Roles are handled through different endpoints
+     * <br> Example: <a href="http://localhost:2019/users/user/2">http://localhost:2019/users/user/2</a>
+     *
+     * @param replaceUser A complete User including all emails and roles to be used to
+     *                   replace the User. Roles must already exist.
+     * @param userid     The primary key of the user you wish to replace.
+     * @return status of OK
+     * @see UserService#save(User) UserService.save(User)
+     */
+    @PutMapping(value = "/user/{userid}", consumes = "application/json")
+    public ResponseEntity<?> replaceUser(@Valid @RequestBody User replaceUser,
+                                         @PathVariable long userid) {
+
+        replaceUser.setUserid(userid);
+        userService.save(replaceUser);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Updates the user record associated with the given id with the provided data. Only the provided fields are affected.
+     * Roles are handled through different endpoints
+     * If an email list is given, it replaces the original emai list.
+     * <br> Example: <a href="http://localhost:2019/users/user/7">http://localhost:2019/users/user/7</a>
+     *
+     * @param updateUser An object containing values for just the fields that are being updated. All other fields are left NULL.
+     * @param id         The primary key of the user you wish to update.
+     * @return A status of OK
+     * @see UserService#update(User, long) UserService.update(User, long)
+     */
+    @PatchMapping(value = "/user/{id}", consumes = "application/json")
+    public ResponseEntity<?> updateUser(@RequestBody User updateUser, @PathVariable long id) {
+        userService.update(updateUser, id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Deletes a given user along with associated emails and roles
+     * <br>Example: <a href="http://localhost:2019/users/user/3">http://localhost:2019/users/user/3</a>
+     *
+     * @param id the primary key of the user you wish to delete
+     * @return Status of OK
+     */
+    @DeleteMapping(value = "/user/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable long id) {
+        userService.delete(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
