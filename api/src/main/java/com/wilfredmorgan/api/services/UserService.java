@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * The service that works with the User model
  * <p>
- * Roles are added through the add user process
  */
 public interface UserService {
 
@@ -51,7 +50,7 @@ public interface UserService {
     List <User> findUsernamesContaining(String username);
 
     /**
-     * A list of users whose last name constrains the given substring
+     * A list of users whose last name contains the given substring
      *
      * @param lastname The substring (String) containing the last name
      * @return List of users whose last name contains the given substring
