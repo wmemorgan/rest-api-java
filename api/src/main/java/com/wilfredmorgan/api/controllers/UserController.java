@@ -170,8 +170,7 @@ public class UserController {
 
     /**
      * Updates the user record associated with the given id with the provided data. Only the provided fields are affected.
-     * Roles are handled through different endpoints
-     * If an email list is given, it replaces the original emai list.
+     * If role list is given, it replaces the original role list.
      * <br> Example: <a href="http://localhost:2019/users/user/7">http://localhost:2019/users/user/7</a>
      *
      * @param updateUser An object containing values for just the fields that are being updated. All other fields are left NULL.
@@ -180,20 +179,21 @@ public class UserController {
      * @see UserService#update(User, long) UserService.update(User, long)
      */
     @PatchMapping(value = "/user/{id}", consumes = "application/json")
-    public ResponseEntity<?> updateUser(@RequestBody User updateUser, @PathVariable long id) {
+    public ResponseEntity<?> updateUser(@Valid @RequestBody User updateUser, @PathVariable long id) {
         userService.update(updateUser, id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
-     * Deletes a given user along with associated emails and roles
+     * Deletes a given user along with associated roles
      * <br>Example: <a href="http://localhost:2019/users/user/3">http://localhost:2019/users/user/3</a>
      *
      * @param id the primary key of the user you wish to delete
      * @return Status of OK
+     * @see UserService#delete(long) UserService.delete(long)
      */
-    @DeleteMapping(value = "/user/{id}")
+    @DeleteMapping(value = "/user/{id}", produces = {"application/json"})
     public ResponseEntity<?> deleteUserById(@PathVariable long id) {
         userService.delete(id);
 
