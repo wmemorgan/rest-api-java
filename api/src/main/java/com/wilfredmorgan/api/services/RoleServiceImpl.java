@@ -102,7 +102,7 @@ public class RoleServiceImpl implements RoleService{
     @Transactional
     @Override
     public void delete(long id) {
-
+        // Todo - add restriction and exception handling for deleting ADMIN
         findRoleById(id);
         roleRepository.deleteById(id);
     }
