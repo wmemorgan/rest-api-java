@@ -24,7 +24,7 @@ env:
 before_script: cd api
 
 before_install:
-  - docker pull openjdk:11-jre-alpine
+  - docker pull openjdk:11-jre-slim-sid
 
 # Test & Build SpringBoot app
 script:
