@@ -1,7 +1,6 @@
 language: java
 jdk:
     - oraclejdk11
-    - openjdk11
 
 branches:
     only:
@@ -9,4 +8,4 @@ branches:
         - dev
         - cicd
 script:
-    - /api/mvnw clean install
+    - /api/./mvnw clean install
