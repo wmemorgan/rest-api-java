@@ -36,3 +36,4 @@ deploy:
   app: wme-rest-api-java
   on:
     repo: wmemorgan/rest-api-java
+    all_branches: true
