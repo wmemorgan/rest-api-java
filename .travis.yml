@@ -19,7 +19,4 @@ deploy:
   secure: "${HEROKU_API_KEY}"
  app: wme-rest-api-java
  on:
-    branches:
-        -master
-        -dev 
-        -cicd
+    branches: cicd
