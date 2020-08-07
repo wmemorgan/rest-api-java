@@ -9,6 +9,14 @@ branches:
         - cicd
 
 before_script: cd api
-        
+
 script:
     - ./mvnw clean install
+
+deploy:
+ provider: heroku
+ api-key: 
+  secure: ${HEROKU_API_KEY}
+ app: wme-rest-api-java
+before_install:
+  - chmod +x mvnw
