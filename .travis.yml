@@ -18,6 +18,3 @@ deploy:
  api-key: 
   secure: ${HEROKU_API_KEY}
  app: wme-rest-api-java
-before_install:
-    - cd api
-    - chmod +x mvnw
