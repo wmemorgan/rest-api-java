@@ -1,6 +1,0 @@
-version: "3"
-services:
-  app:
-    build: .
-    image: wmemorgan/rest-api-java:latest
-    container_name: rest-api-java
