@@ -49,17 +49,17 @@ public class UserServiceImplTest {
         MockitoAnnotations.initMocks(this);
 
         // Uncomment when validating database manipulation
-        System.out.println("\n*** BEFORE ***");
-        displayTestDbRecords();
-        System.out.println();
+//        System.out.println("\n*** BEFORE ***");
+//        displayTestDbRecords();
+//        System.out.println();
     }
 
     @After
     public void tearDown() throws Exception {
         // Uncomment when validating database manipulation
-        System.out.println("\n*** AFTER ***");
-        displayTestDbRecords();
-        System.out.println();
+//        System.out.println("\n*** AFTER ***");
+//        displayTestDbRecords();
+//        System.out.println();
     }
 
     @Test

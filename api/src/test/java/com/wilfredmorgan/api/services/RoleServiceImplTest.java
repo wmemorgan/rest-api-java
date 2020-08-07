@@ -44,9 +44,9 @@ public class RoleServiceImplTest {
         MockitoAnnotations.initMocks(this);
 
         // Uncomment when validating database manipulation
-        System.out.println("\n*** BEFORE ***");
-        displayTestDbRecords();
-        System.out.println();
+//        System.out.println("\n*** BEFORE ***");
+//        displayTestDbRecords();
+//        System.out.println();
 
     }
 
@@ -54,8 +54,9 @@ public class RoleServiceImplTest {
     public void tearDown() throws Exception {
 
         // Uncomment when validating database manipulation
-        System.out.println("\n*** AFTER ***");
-        displayTestDbRecords();
+//        System.out.println("\n*** AFTER ***");
+//        displayTestDbRecords();
+//        System.out.println();
     }
 
     @Test
