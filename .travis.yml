@@ -9,4 +9,4 @@ branches:
         - dev
         - cicd
 script:
-    - /api/./mvnw clean install
+    - /api/mvnw clean install
