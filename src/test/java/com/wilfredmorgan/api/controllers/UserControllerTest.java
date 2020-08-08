@@ -1,6 +1,7 @@
 package com.wilfredmorgan.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wilfredmorgan.api.ApiApplication;
 import com.wilfredmorgan.api.models.Role;
 import com.wilfredmorgan.api.models.User;
 import com.wilfredmorgan.api.models.UserRoles;
@@ -11,7 +12,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,12 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = UserController.class)
+@SpringBootTest(classes = ApiApplication.class)
+@AutoConfigureMockMvc
 public class UserControllerTest {
 
     @Autowired
