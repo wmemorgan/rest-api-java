@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
+import com.wilfredmorgan.api.exceptions.ResourceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class RoleServiceImpl implements RoleService{
     public Role findRoleById(long id) {
 
         return roleRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
+                .orElseThrow(() -> new ResourceNotFoundException(
                         "Role id " + id + " not found"));
     }
 
@@ -58,7 +58,7 @@ public class RoleServiceImpl implements RoleService{
         Role r = roleRepository.findByNameIgnoreCase(name);
 
         if (r == null) {
-            throw new EntityNotFoundException(
+            throw new ResourceNotFoundException(
                     "Role name " + name + " not found"
             );
         }
@@ -87,7 +87,7 @@ public class RoleServiceImpl implements RoleService{
     public Role update(Role role, long id) {
 
         if (role.getName() == null) {
-            throw new EntityNotFoundException("No role name found to update");
+            throw new ResourceNotFoundException("No role name found to update");
         }
 
         Role r = findRoleById(id);

@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
+import com.wilfredmorgan.api.exceptions.ResourceNotFoundException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -81,7 +81,7 @@ public class UserServiceImplTest {
         assertEquals("Steve", testUser.getFirstname());
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = ResourceNotFoundException.class)
     public void C_notFindById() {
         assertEquals(873, userService.findById(873).getUserid());
     }
@@ -95,7 +95,7 @@ public class UserServiceImplTest {
         assertEquals("hpotter", testUser.getUsername());
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = ResourceNotFoundException.class)
     public void E_notFindByUsername() {
         assertEquals("sconnors", userService.findByUsername("sconnors"));
     }
@@ -109,7 +109,7 @@ public class UserServiceImplTest {
         assertEquals("george@mail.com", testUser.getPrimaryemail());
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = ResourceNotFoundException.class)
     public void G_notFindByEmail() {
         assertEquals("gkaplan@mail.com", userService.findByEmail("gkaplan@mail.com").getPrimaryemail());
     }

@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
+import com.wilfredmorgan.api.exceptions.ResourceNotFoundException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -78,7 +78,7 @@ public class RoleServiceImplTest {
         assertEquals("ADMIN", testRole.getName().toUpperCase());
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = ResourceNotFoundException.class)
     public void C_notFindRoleById() {
         assertEquals(954, roleService.findRoleById(954).getRoleid());
     }
@@ -92,7 +92,7 @@ public class RoleServiceImplTest {
         assertEquals("USER", testRole.getName());
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = ResourceNotFoundException.class)
     public void E_notFindRoleByName() {
         assertEquals("DATA", roleService.findRoleByName("data"));
     }

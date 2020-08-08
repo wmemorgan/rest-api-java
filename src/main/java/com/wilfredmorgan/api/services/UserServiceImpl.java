@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
+import com.wilfredmorgan.api.exceptions.ResourceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
+                .orElseThrow(() -> new ResourceNotFoundException(
                         "User id " + id + " not found"
                 ));
     }
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         User u = userRepository.findByUsernameIgnoreCase(username);
 
         if (u == null) {
-            throw new EntityNotFoundException(
+            throw new ResourceNotFoundException(
                     "Username " + username + " not found"
             );
         }
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
         User u = userRepository.findByPrimaryemailIgnoreCase(email);
 
         if (u == null) {
-            throw new EntityNotFoundException(
+            throw new ResourceNotFoundException(
                     "User email " + email + " not found"
             );
         }
