@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -49,6 +51,7 @@ public class UserController {
      * @return JSON object of the user you seek
      * @see UserService#findById(long) UserService.findById(long)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/user/{userid}", produces = {"application/json"})
     public ResponseEntity<?> getUserById(@PathVariable Long userid) {
         User u = userService.findById(userid);
@@ -64,6 +67,7 @@ public class UserController {
      * @return JSON object of the user you seek
      * @see UserService#findByUsername(String) UserService.findByUsername(String)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/user/username/{username}",
             produces = {"application/json"})
     public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
@@ -80,9 +84,17 @@ public class UserController {
      * @return JSON object of the user you seek
      * @see UserService#findByEmail(String) UserService.findByEmail(String)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/user/email/{email}", produces = {"application/json"})
     public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
         User u = userService.findByEmail(email);
+
+        return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user/profile", produces = {"application/json"})
+    public ResponseEntity<?> getUserProfile(Authentication authentication) {
+        User u = userService.findByUsername(authentication.getName());
 
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
@@ -95,6 +107,7 @@ public class UserController {
      * @return JSON list of users you seek
      * @see UserService#findUsernamesContaining(String) UserService.findUsernamesContaining(String) 
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/username/like/{username}", produces = {"application/json"})
     public ResponseEntity<?> getUsersLikeUsername(@PathVariable String username) {
         List<User> users = userService.findUsernamesContaining(username);
@@ -110,6 +123,7 @@ public class UserController {
      * @return JSON list of users you seek
      * @see UserService#findAllByLastName(String) UserService.findAllByLastName(String)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/lastname/like/{lastname}", produces = {"application/json"})
     public ResponseEntity<?> getAllUsersByLastName(@PathVariable String lastname) {
         List<User> users = userService.findAllByLastName(lastname);
