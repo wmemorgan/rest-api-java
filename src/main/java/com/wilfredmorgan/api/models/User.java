@@ -1,10 +1,15 @@
 package com.wilfredmorgan.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -181,12 +186,22 @@ public class User extends Auditable {
     }
 
     /**
+     * Setter for password to be used internally, after the password has been encrypted
+     *
+     * @param password the new password (String) for the user. Comes in encrypted
+     */
+    public void setPasswordNoEncrypt(String password) {
+        this.password = password;
+    }
+
+    /**
      * Setter for password
      *
-     * @param password the new password (String) for the user
+     * @param password the new password (String) for the user. Comes in plain text and goes out encrypted
      */
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
     }
 
     /**
@@ -205,5 +220,18 @@ public class User extends Auditable {
      */
     public void setRoles(Set<UserRoles> roles) {
         this.roles = roles;
+    }
+
+    @JsonIgnore
+    public List<SimpleGrantedAuthority> getAuthority() {
+        List<SimpleGrantedAuthority> rtnList = new ArrayList<>();
+
+        for (UserRoles r : this.roles) {
+            String myRole = "ROLE_" + r.getRole()
+                    .getName().toUpperCase();
+            rtnList.add(new SimpleGrantedAuthority(myRole));
+        }
+
+        return rtnList;
     }
 }
