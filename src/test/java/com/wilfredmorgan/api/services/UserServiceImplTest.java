@@ -75,7 +75,7 @@ public class UserServiceImplTest {
 
     @Test
     public void B_findById() {
-        User testUser = userService.findById(2);
+        User testUser = userService.findById(3);
         System.out.println("Expect: Steve");
         System.out.println("Actual: " + testUser.getFirstname());
 
@@ -178,14 +178,14 @@ public class UserServiceImplTest {
     @Transactional
     @Test
     public void L_delete() {
-        userService.delete(2);
+        userService.delete(3);
 
         List<User> testList = userService.findAll();
 
-        System.out.println("Expect: 2");
+        System.out.println("Expect: 3");
         System.out.println("Actual: " + testList.size());
 
-        assertEquals(2, testList.size());
+        assertEquals(3, testList.size());
 
     }
 
