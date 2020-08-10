@@ -10,9 +10,9 @@ DELETE
 FROM roles;
 
 INSERT INTO USERS(USERID, USERNAME, FIRSTNAME, LASTNAME, PRIMARYEMAIL, PASSWORD, CREATEDBY, CREATEDDATE, LASTMODIFIEDBY, LASTMODIFIEDDATE)
-     VALUES (1, 'gkaplan','George','Kaplan','george@mail.com','mypassword','SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP),
-            (2, 'srogers','Steve','Rogers','srogers@example.com','mypassword','SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP),
-            (3, 'hpotter', 'Harry', 'Potter','harry-potter@hogwarts.edu','mypassword','SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP);
+     VALUES (1, 'gkaplan','George','Kaplan','george@mail.com','$2y$12$oCvu/soDlKYCOeWAK51V3OfiY/xRhg/8a.EwuNZIjfCB.yVVBnOru','SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP),
+            (2, 'srogers','Steve','Rogers','srogers@example.com','$2y$12$XKbrsDIxH3ta/zZwBnR3w.cy5/epthXbWFx68kBM0e6twjotOWuBi','SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP),
+            (3, 'hpotter', 'Harry', 'Potter','harry-potter@hogwarts.edu','$2y$12$VZc0OZa4iFuBThv2.LqLxupxBLAo2Kftneurw0aN.8p6fD2D/WR4i','SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP);
 
 INSERT INTO ROLES(ROLEID, NAME, CREATEDBY, CREATEDDATE, LASTMODIFIEDBY, LASTMODIFIEDDATE)
      VALUES (1, 'ADMIN', 'SYSTEM', CURRENT_TIMESTAMP, 'SYSTEM', CURRENT_TIMESTAMP),
