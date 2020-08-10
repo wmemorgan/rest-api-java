@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -34,6 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApiApplication.class)
 @AutoConfigureMockMvc
+@WithMockUser(username = "admin", roles = {"ADMIN", "USER"})
 public class UserControllerTest {
 
     @Autowired
@@ -69,28 +71,32 @@ public class UserControllerTest {
         r2.setRoleid(2);
 
         // Create User objects
-        User u1 = new User("gkaplan","George","Kaplan","george@mail.com","mypassword");
-        User u2 = new User("srogers","Steve","Rogers","srogers@example.com","mypassword");
-        User u3 = new User("hpotter", "Harry", "Potter","harry-potter@hogwarts.edu","mypassword");
+        User u1 = new User("admin","Admin","User","admin@mail.com","mypassword");
+        User u2 = new User("gkaplan","George","Kaplan","george@mail.com","mypassword");
+        User u3 = new User("srogers","Steve","Rogers","srogers@example.com","mypassword");
+        User u4 = new User("hpotter", "Harry", "Potter","harry-potter@hogwarts.edu","mypassword");
 
         // Set user ids
         u1.setUserid(11);
         u2.setUserid(12);
         u3.setUserid(13);
+        u4.setUserid(14);
 
         // Assign roles to users
         u1.getRoles().add(new UserRoles(u1, r1));
-        u1.getRoles().add(new UserRoles(u1, r2));
 
         u2.getRoles().add(new UserRoles(u2, r1));
         u2.getRoles().add(new UserRoles(u2, r2));
 
         u3.getRoles().add(new UserRoles(u3, r2));
 
+        u4.getRoles().add(new UserRoles(u4, r2));
+
         // Add user objects to list
         userList.add(u1);
         userList.add(u2);
         userList.add(u3);
+        userList.add(u4);
 
         // Uncomment when validating database manipulation
 //        System.out.println("\n*** BEFORE ***");
