@@ -80,7 +80,7 @@ fabric.properties
 
  *.iml
  modules.xml
- .idea/misc.xml
+.idea/misc.xml
 # *.ipr
 
 # Sonarlint plugin
@@ -164,3 +164,4 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,java-web,macos
 api.iml
+misc.xml
