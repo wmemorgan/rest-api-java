@@ -1,5 +1,6 @@
 package com.wilfredmorgan.api.services;
 
+import com.wilfredmorgan.api.handlers.HelpFunctions;
 import com.wilfredmorgan.api.models.Role;
 import com.wilfredmorgan.api.models.User;
 import com.wilfredmorgan.api.models.UserRoles;
@@ -30,6 +31,9 @@ public class UserServiceImpl implements UserService {
      */
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    HelpFunctions helpFunctions;
 
     @Override
     public List<User> findAll() {
@@ -122,7 +126,7 @@ public class UserServiceImpl implements UserService {
         newUser.setFirstname(user.getFirstname());
         newUser.setLastname(user.getLastname());
         newUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
-        newUser.setPassword(user.getPassword());
+        newUser.setPasswordNoEncrypt(user.getPassword());
 
         // Populate assigned roles
         newUser.getRoles().clear();
@@ -142,40 +146,44 @@ public class UserServiceImpl implements UserService {
         // Confirm user exists
         User u = findById(id);
 
-        // Update fields with provided data
-        if (user.getUsername() != null) {
-            u.setUsername(user.getUsername().toLowerCase());
-        }
-
-        if (user.getFirstname() != null) {
-            u.setFirstname(user.getFirstname());
-        }
-
-        if (user.getLastname() != null) {
-            u.setLastname(user.getLastname());
-        }
-
-        if (user.getPrimaryemail() != null) {
-            u.setPrimaryemail(user.getPrimaryemail().toLowerCase());
-        }
-
-        if (user.getPassword() != null) {
-            u.setPassword(user.getPassword());
-        }
-
-        // Update role assignments
-        if (user.getRoles().size() > 0) {
-            u.getRoles().clear();
-
-            for (UserRoles ur : user.getRoles()) {
-                Role addRole = roleService.findRoleById(ur.getRole().getRoleid());
-
-                u.getRoles()
-                        .add(new UserRoles(u, addRole));
+        if (helpFunctions.isAuthorizedToMakeChange(u.getUsername())) {
+            // Update fields with provided data
+            if (user.getUsername() != null) {
+                u.setUsername(user.getUsername().toLowerCase());
             }
-        }
 
-        return userRepository.save(u);
+            if (user.getFirstname() != null) {
+                u.setFirstname(user.getFirstname());
+            }
+
+            if (user.getLastname() != null) {
+                u.setLastname(user.getLastname());
+            }
+
+            if (user.getPrimaryemail() != null) {
+                u.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+            }
+
+            if (user.getPassword() != null) {
+                u.setPasswordNoEncrypt(user.getPassword());
+            }
+
+            // Update role assignments
+            if (user.getRoles().size() > 0) {
+                u.getRoles().clear();
+
+                for (UserRoles ur : user.getRoles()) {
+                    Role addRole = roleService.findRoleById(ur.getRole().getRoleid());
+
+                    u.getRoles()
+                            .add(new UserRoles(u, addRole));
+                }
+            }
+
+            return userRepository.save(u);
+        } else {
+            throw new ResourceNotFoundException("Not authorized");
+        }
     }
 
     @Override
