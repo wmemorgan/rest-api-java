@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.wilfredmorgan.api"},{"l":"com.wilfredmorgan.api.config"},{"l":"com.wilfredmorgan.api.controllers"},{"l":"com.wilfredmorgan.api.exceptions"},{"l":"com.wilfredmorgan.api.handlers"},{"l":"com.wilfredmorgan.api.models"},{"l":"com.wilfredmorgan.api.repositories"},{"l":"com.wilfredmorgan.api.services"}]

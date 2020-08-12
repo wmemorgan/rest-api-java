@@ -1,0 +1,17 @@
+language: java
+jdk:
+- openjdk11
+script:
+- "./mvnw clean install"
+branches:
+  only:
+  - master
+  - dev
+  - cicd
+deploy:
+  provider: heroku
+  app: wme-rest-api-java
+  on:
+    all_branches: true
+  api_key:
+    secure: kAtZGC8bmr3lOsn7UPlggyCLvmT4EsTF1SfZf/4i1CFDCIl/LkFlTkqn/19UeiM/v1WI9570ySnFY0phYVxcA+6XCDMHYPxivJMh9BSaW4SoU8PGrSkwuSoUOJM6XEICQKC1SMfGi/l+1g06/7HyL85nE4UhTKAQnej+op6nJ4TphbsZ1BMPWcCqC9aN+kCvtCUXbMFEMBLr9+wfDiDskFfkXZzkGEWGcuih9HBeHy5xVM8z7UJkj8SgHHwHbrcGMurANk1XFT023+5snIzEUOpzftVsWEwa7IqpaaCTxXt50TTCSFBM6GGD2GPaBvDhGmHyWIa3W1xyJuduurdWr+5cKHW5cP4y3iS8tOJ7q+kCglrNaOwQ0inT+dnltQVWZp2nn7FIPZ3XHommtxgpoYHIxNTRdQbJs5EtDowhVEsHvi4z+1qbzB/jQ0EFfwSmhxIkJnynBv+8NTQph2ZZulYT/Faw3r4hEVagK0w2CyKo9r8sIGhDFm44BbfJH2Uk6poH5F0UspwNi/Pyd2qMzcSK6rjcb5k//aggMqdbDk7rAEqMFVGXcxnIQ/xHd6p/8hVxKhYmcg+H2G4AAjoEjprxJo4+48tZtfaA5KhLqZ9AAZC23Vb5EUYBNC68SZsZ5TocYNUztqkYWvKEpDghhs4s3d+CoDmBq6DexvSf9PY=
