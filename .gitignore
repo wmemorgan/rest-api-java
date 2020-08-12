@@ -165,3 +165,9 @@ Temporary Items
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,java-web,macos
 api.iml
 misc.xml
+/.idea/.name
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/modules.xml
+/.idea/vcs.xml
