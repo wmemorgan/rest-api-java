@@ -1,0 +1,8 @@
+com.wilfredmorgan.api
+com.wilfredmorgan.api.config
+com.wilfredmorgan.api.controllers
+com.wilfredmorgan.api.exceptions
+com.wilfredmorgan.api.handlers
+com.wilfredmorgan.api.models
+com.wilfredmorgan.api.repositories
+com.wilfredmorgan.api.services
