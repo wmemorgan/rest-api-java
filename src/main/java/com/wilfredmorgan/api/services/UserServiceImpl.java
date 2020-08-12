@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-
         List<User> list = new ArrayList<>();
 
         /**
@@ -75,7 +74,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-
         User u = userRepository.findByPrimaryemailIgnoreCase(email);
 
         if (u == null) {
@@ -89,7 +87,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUsernamesContaining(String username) {
-
         List<User> list = new ArrayList<>();
 
         userRepository.findByUsernameContainingIgnoreCase(username)
@@ -101,7 +98,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllByLastName(String lastname) {
-
         List<User> list = new ArrayList<>();
 
         userRepository.findByLastnameContainingIgnoreCase(lastname)
@@ -113,7 +109,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-
         User newUser = new User();
         // Determine if record exists to be replaced
         if (user.getUserid() != 0) {
@@ -130,13 +125,19 @@ public class UserServiceImpl implements UserService {
 
         // Populate assigned roles
         newUser.getRoles().clear();
-        for (UserRoles ur : user.getRoles()) {
-            Role addRole = roleService.findRoleById(ur.getRole().getRoleid());
 
-            newUser.getRoles()
-                    .add(new UserRoles(newUser, addRole));
+        //
+        if (user.getRoles().size() > 0) {
+            for (UserRoles ur : user.getRoles()) {
+                Role addRole = roleService.findRoleById(ur.getRole().getRoleid());
+
+                newUser.getRoles()
+                        .add(new UserRoles(newUser, addRole));
+            }
+        } else {
+            Role r = roleService.findRoleByName("user");
+            newUser.getRoles().add(new UserRoles(newUser, r));
         }
-
 
         return userRepository.save(newUser);
     }
