@@ -13,5 +13,9 @@ REST API written in Java and the Spring Boot framework.
 - Open the repo directory in IntelliJ or the IDE of your choice.
 - Download the project dependencies specified in the Maven configuration file (pom.xml).
 
+## Documentation
+- [Developer Documentation](https://wilfredmorgan.com/rest-api-java/index.html)
+- [REST API Documentation](https://wme-rest-api-java.herokuapp.com/swagger-ui.html)
+
 ## License
 [MIT](https://github.com/wmemorgan/rest-api-java/blob/master/LICENSE)
