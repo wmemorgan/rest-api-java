@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * A class used to display custom error messages
+ */
 public class ErrorDetail {
 
     private String title;

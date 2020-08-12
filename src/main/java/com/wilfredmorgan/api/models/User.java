@@ -12,6 +12,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The entity allowing interaction with the users table.
+ */
 @Entity
 @Table(name = "users")
 public class User extends Auditable {

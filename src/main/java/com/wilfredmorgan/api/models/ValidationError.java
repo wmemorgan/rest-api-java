@@ -1,5 +1,8 @@
 package com.wilfredmorgan.api.models;
 
+/**
+ * A model to report a validation error
+ */
 public class ValidationError {
     private String code;
     private String message;
