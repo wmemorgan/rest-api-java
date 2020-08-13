@@ -15,7 +15,7 @@ REST API written in Java and the Spring Boot framework.
 
 ## Documentation
 - [Developer Documentation](https://wilfredmorgan.com/rest-api-java/index.html)
-- [REST API Documentation](https://wme-rest-api-java.herokuapp.com/swagger-ui.html)
+- [REST API Specifications](https://wme-rest-api-java.herokuapp.com/swagger-ui.html)
 
 ## License
 [MIT](https://github.com/wmemorgan/rest-api-java/blob/master/LICENSE)
