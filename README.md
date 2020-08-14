@@ -1,7 +1,7 @@
 # Java REST API  
 [![Build Status](https://travis-ci.org/wmemorgan/rest-api-java.svg?branch=cicd)](https://travis-ci.org/wmemorgan/rest-api-java)
 
-REST API written in Java and the Spring Boot framework.
+REST API which manages user authentication and roles based authorization written in Java and the Spring Boot framework.
 
 ## Demo Client Site
 - [User Auth Demo (Java Backend)](https://auth-java--webauth-client.netlify.app)
